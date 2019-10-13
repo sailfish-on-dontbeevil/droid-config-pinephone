@@ -1,0 +1,21 @@
+Description: Pattern with packages for common debugging tools used by porters
+Name: sailfish-porter-tools
+Requires:
+- jolla-developer-mode
+- sailfishsilica-qt5-demos
+- libhybris-tests
+
+- busybox-static
+- net-tools
+- openssh-clients
+- openssh-server
+- vim-enhanced
+- zypper
+- strace
+
+# jolla-rnd-device will enable usb-moded even when UI is not yet
+# brought up (useful during development, available since update10)
+- jolla-rnd-device
+
+Summary: Sailfish OS Porter Tools
+

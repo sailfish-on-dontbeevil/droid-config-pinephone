@@ -1,0 +1,90 @@
+# Feel free to disable non-critical HA parts during devel by commenting lines out
+# Generated in hadk by executing: rpm/dhd/helpers/add_new_device.sh
+
+Description: Pattern with packages for dontbeevil HW Adaptation
+Name: jolla-hw-adaptation-dontbeevil
+Requires:
+#- droid-hal-dontbeevil
+#- droid-hal-dontbeevil-img-boot
+#- droid-hal-dontbeevil-kernel-modules
+- droid-config-dontbeevil-sailfish
+- droid-config-dontbeevil-pulseaudio-settings
+- droid-config-dontbeevil-policy-settings
+- droid-config-dontbeevil-preinit-plugin
+- droid-config-dontbeevil-flashing
+- droid-config-dontbeevil-bluez5
+#- droid-hal-version-dontbeevil
+
+# Hybris packages
+#- libhybris-libEGL
+#- libhybris-libGLESv2
+#- libhybris-libwayland-egl
+
+# Sensors
+#- hybris-libsensorfw-qt5
+
+# Vibra
+#- ngfd-plugin-native-vibrator
+#- qt5-feedback-haptics-native-vibrator
+
+# Needed for /dev/touchscreen symlink
+- qt5-plugin-generic-evdev
+
+#- pulseaudio-modules-droid
+# for audio recording to work:
+- qt5-qtmultimedia-plugin-mediaservice-gstmediacapture
+
+# These need to be per-device due to differing backends (fbdev, eglfs, hwc, ..?)
+#- qt5-qtwayland-wayland_egl
+#- qt5-qpa-hwcomposer-plugin
+#- qtscenegraph-adaptation
+
+# Add GStreamer v1.0 as standard
+- gstreamer1.0
+- gstreamer1.0-plugins-good
+- gstreamer1.0-plugins-base
+- gstreamer1.0-plugins-bad
+- nemo-gstreamer1.0-interfaces
+# For devices with droidmedia and gst-droid built, see HADK pdf for more information
+#- gstreamer1.0-droid
+
+# This is needed for notification LEDs
+# Native devices use the nondroid variant of the mce-plugin-libybris
+#- mce-plugin-libhybris
+- mce-plugin-libhybris-nondroid
+  
+## USB mode controller
+# Enables mode selector upon plugging USB cable:
+- usb-moded
+#- usb-moded-defaults-android
+#- usb-moded-developer-mode-android
+
+# Extra useful modes not officially supported:
+# might need some configuration to get working
+#- usb-moded-mass-storage-android-config
+# working but careful with roaming!
+#- usb-moded-connection-sharing-android-config
+# android diag mode only usable for certain android tools
+#- usb-moded-diag-mode-android
+
+# hammerhead, grouper, and maguro use this in scripts, so include for all
+- rfkill
+
+# enable device lock and allow to select untrusted software
+- jolla-devicelock-daemon-encsfa
+
+# For GPS
+#- geoclue-provider-hybris
+
+# For FM radio on some QCOM devices
+#- qt5-qtmultimedia-plugin-mediaservice-irisradio
+#- jolla-mediaplayer-radio
+
+# For devices with SD Card
+#- sd-utils
+
+# WiFi/BT regulator DB
+- wireless-regdb
+
+Summary: Jolla HW Adaptation dontbeevil
+

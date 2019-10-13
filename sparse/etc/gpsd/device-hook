@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Device hook script to enable and disable the EC25 modem GPS
+# Based on: https://zedm.net/archives/tag/device-hook
+# This script needs to be owned by root and be accessible from the dialout group with permissions 750.
+#
+if [ "$1" = "/dev/EC25.NMEA" ] && [ "$2" = "ACTIVATE" ];
+then
+        echo "AT+QGPS=1" > "/dev/EC25.AT"
+        sleep 5
+else
+        if [ "$1" = "/dev/EC25.NMEA" ] && [ "$2" = "DEACTIVATE" ];
+        then
+        echo "AT+QGPS=0" > "/dev/EC25.AT"
+        fi
+fi

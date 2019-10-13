@@ -1,0 +1,41 @@
+# Feel free to disable non-critical HA parts during devel by commenting lines out
+# Generated in hadk by executing: rpm/dhd/helpers/add_new_device.sh
+
+Description: Pattern with packages for dontbeevil configurations
+Name: jolla-configuration-dontbeevil
+Requires:
+- pattern:jolla-hw-adaptation-dontbeevil
+
+- patterns-sailfish-applications
+- patterns-sailfish-ui
+# For devices with cellular modem. Those without one, please comment out:
+- patterns-sailfish-cellular-apps
+# Early stages of porting benefit from these:
+- pattern:sailfish-porter-tools
+
+- sailfish-content-graphics-z@ICON_RES@
+
+# For multi-SIM devices
+#- jolla-settings-networking-multisim
+
+# Introduced starting Sailfish OS 2.0.4.x:
+# 3rd party accounts like Twitter, VK, cloud services, etc
+- jolla-settings-accounts-extensions-3rd-party-all
+
+# Introduced starting Sailfish OS 2.1.1.26
+# Required for Jolla Store Access
+- patterns-sailfish-consumer-generic
+
+# For Mozilla location services (online)
+- geoclue-provider-mlsdb
+
+# Sailfish OS CSD tool for hardware testing
+# needs some configuration to get all features working
+- csd
+
+# Devices with 2G or more memory should also include this booster
+# to improve camera startup times and the like
+#- mapplauncherd-booster-silica-qt5-media
+
+Summary: Jolla Configuration dontbeevil
+

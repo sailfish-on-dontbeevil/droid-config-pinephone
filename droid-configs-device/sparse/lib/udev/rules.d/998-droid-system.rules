@@ -1,0 +1,62 @@
+SUBSYSTEM=="graphics", SYMLINK+="$env{SUBSYSTEM}/%k"
+SUBSYSTEM=="block", SYMLINK+="$env{SUBSYSTEM}/%k"
+SUBSYSTEM=="oncrpc", SYMLINK+="$env{SUBSYSTEM}/%k"
+SUBSYSTEM=="adsp", SYMLINK+="$env{SUBSYSTEM}/%k"
+SUBSYSTEM=="msm_camera", SYMLINK+="$env{SUBSYSTEM}/%k"
+SUBSYSTEM=="mtd", SYMLINK+="$env{SUBSYSTEM}/%k"
+SUBSYSTEM=="block", SYMLINK+="$env{SUBSYSTEM}/%k"
+SUBSYSTEM=="misc", KERNEL=="log_events", SYMLINK+="alog/events"
+SUBSYSTEM=="misc", KERNEL=="log_radio", SYMLINK+="alog/radio"
+SUBSYSTEM=="misc", KERNEL=="log_system", SYMLINK+="alog/system"
+SUBSYSTEM=="misc", KERNEL=="log_main", SYMLINK+="alog/main"
+
+# Video device symlinks needed for video codecs
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTRS{link_name}!="", SYMLINK+="video/%s{link_name}"
+
+# Partition symlinks, compatible with the android way of setting up the
+# symlinks.
+
+# Pass collected (see below) information down to lower levels.
+SUBSYSTEM=="?*", ENV{PLATFORM_FOLDER}=="", IMPORT{parent}="PLATFORM_FOLDER"
+SUBSYSTEM=="?*", ENV{PLATFORM_DEVICE}=="", IMPORT{parent}="PLATFORM_DEVICE"
+# Collect information about the platform devices:
+# /sys/devices/platform/FOLDER
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH=="/devices/platform/*", DEVPATH!="/devices/platform/*/*", DEVPATH=="/devices/platform/*", ENV{PLATFORM_FOLDER}="$kernel"
+# /sys/devices/platform/FOLDER/DEVICE
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH=="/devices/platform/*", DEVPATH!="/devices/platform/*/*/*", DEVPATH=="/devices/platform/*/*", ENV{PLATFORM_DEVICE}="$kernel"
+# /sys/devices/FOLDER
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH!="/devices/platform/*", DEVPATH!="/devices/*/*", DEVPATH=="/devices/*", ENV{PLATFORM_FOLDER}="$kernel"
+# /sys/devices/FOLDER/DEVICE
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH!="/devices/platform/*", DEVPATH!="/devices/*/*/*", DEVPATH=="/devices/*/*", ENV{PLATFORM_DEVICE}="$kernel"
+
+# This will set up the bootdevice symlink, given that androidboot.bootdevice
+# is set on the commandline. If it is not given on the cmdline, android-init
+# will create the bootdevice (if the paths are correct, which they now should
+# be). If android-init doesn't create the bootdevice symlink and there is no
+# androidboot.bootdevice on the cmdline, then the bootdevice symlink is not
+# required.
+IMPORT{cmdline}="bootdevice"
+# Unfortunately we cannot compare two variables, therefore use a workaround
+# with a file.
+ENV{bootdevice}!="", RUN+="/bin/touch /tmp/udev-$env{bootdevice}"
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH=="/devices/platform/*", DEVPATH!="/devices/platform/*/*/*", DEVPATH=="/devices/platform/*/*", TEST=="/tmp/udev-$env{PLATFORM_DEVICE}", RUN+="/bin/mkdir -p /dev/block/platform/$env{PLATFORM_FOLDER}/$env{bootdevice}"
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH=="/devices/platform/*", DEVPATH!="/devices/platform/*/*/*", DEVPATH=="/devices/platform/*/*", TEST=="/tmp/udev-$env{PLATFORM_DEVICE}", RUN+="/bin/ln -s /dev/block/platform/$env{PLATFORM_FOLDER}/$env{bootdevice} /dev/block/bootdevice"
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH!="/devices/platform/*", DEVPATH!="/devices/*/*/*", DEVPATH=="/devices/*/*", TEST=="/tmp/udev-$env{PLATFORM_DEVICE}", RUN+="/bin/mkdir -p /dev/block/platform/$env{PLATFORM_FOLDER}/$env{bootdevice}"
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH!="/devices/platform/*", DEVPATH!="/devices/*/*/*", DEVPATH=="/devices/*/*", TEST=="/tmp/udev-$env{PLATFORM_DEVICE}", RUN+="/bin/ln -s /dev/block/platform/$env{PLATFORM_FOLDER}/$env{bootdevice} /dev/block/bootdevice"
+# On certain devices the path is .../$PLATFORM_FOLDER/$PLATFORM_DEVICE/...,
+# but on others there is no $PLATFORM_DEVICE subdirectory, or in other words,
+# PLATFORM_FOLDER=platform device, PLATFORM_DEVICE=empty string. (1).
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH=="/devices/platform/*", DEVPATH!="/devices/platform/*/*", DEVPATH=="/devices/platform/*", TEST=="/tmp/udev-$env{PLATFORM_FOLDER}", RUN+="/bin/mkdir -p /dev/block/platform/$env{bootdevice}"
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH=="/devices/platform/*", DEVPATH!="/devices/platform/*/*", DEVPATH=="/devices/platform/*", TEST=="/tmp/udev-$env{PLATFORM_FOLDER}", RUN+="/bin/ln -s /dev/block/platform/$env{bootdevice} /dev/block/bootdevice"
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH!="/devices/platform/*", DEVPATH!="/devices/*/*", DEVPATH=="/devices/*", TEST=="/tmp/udev-$env{PLATFORM_FOLDER}", RUN+="/bin/mkdir -p /dev/block/platform/$env{bootdevice}"
+SUBSYSTEM=="platform", KERNEL!="", DEVPATH!="/devices/platform/*", DEVPATH!="/devices/*/*", DEVPATH=="/devices/*", TEST=="/tmp/udev-$env{PLATFORM_FOLDER}", RUN+="/bin/ln -s /dev/block/platform/$env{bootdevice} /dev/block/bootdevice"
+
+# Create the partition symlinks.
+ENV{ID_PART_ENTRY_SCHEME}=="gpt", ENV{ID_PART_ENTRY_NAME}=="?*", SYMLINK+="block/platform/$env{PLATFORM_FOLDER}/$env{PLATFORM_DEVICE}/by-name/$env{ID_PART_ENTRY_NAME}"
+ENV{ID_PART_ENTRY_SCHEME}=="gpt", ENV{ID_PART_ENTRY_NAME}=="?*", SYMLINK+="block/platform/$env{PLATFORM_FOLDER}/$env{PLATFORM_DEVICE}/by-num/p$env{ID_PART_ENTRY_NUMBER}"
+ENV{ID_PART_ENTRY_SCHEME}=="gpt", ENV{ID_PART_ENTRY_NAME}=="?*", SYMLINK+="block/platform/$env{PLATFORM_FOLDER}/$env{PLATFORM_DEVICE}/$name"
+
+# Backwards compatibility for old SailfishOS approach (might not be necessary)
+# NOTE: if the comment marked with (1) applies then this will not do anything.
+ENV{ID_PART_ENTRY_SCHEME}=="gpt", ENV{ID_PART_ENTRY_NAME}=="?*", SYMLINK+="block/platform/$env{PLATFORM_FOLDER}/by-name/$env{ID_PART_ENTRY_NAME}"
+

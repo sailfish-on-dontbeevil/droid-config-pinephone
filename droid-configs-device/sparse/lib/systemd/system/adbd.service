@@ -1,0 +1,10 @@
+[Unit]
+Description=Android Debug Bridge Daemon
+Requires=adbd-prepare.service
+After=adbd-prepare.service
+PartOf=adbd-prepare.service
+
+[Service]
+Environment=PATH=/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
+ExecStart=/sbin/adbd
+Restart=always

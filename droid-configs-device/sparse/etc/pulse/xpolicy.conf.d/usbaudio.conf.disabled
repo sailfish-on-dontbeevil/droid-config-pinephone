@@ -1,0 +1,19 @@
+# To enable USB-OTG audio add a file
+# sparse/etc/udev/rules.d/99-pulseaudio-ignore-builtin-card.rules with contents
+#
+# KERNEL=="<CARD-HERE>", SUBSYSTEM=="sound", ATTR{id}=="<DEVICE-ID-HERE>", ENV{PULSE_IGNORE}="1"
+#
+# where you can determine <CARD-HERE> (usually card0) and <DEVICE-ID-HERE> with
+# $ udevadm info -a /dev/snd/by-path/*
+#
+# and in sparse/etc/pulse/xpolicy.conf.d make a symlink from this file to usbaudio.conf
+
+[device]
+type  = usbaudio
+sink  = startswith:"alsa_output."
+flags = refresh_always
+
+[device]
+type  = usbmic
+source= startswith:"alsa_input."
+flags = refresh_always

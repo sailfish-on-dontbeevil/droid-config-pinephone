@@ -1,0 +1,15 @@
+droid-hal-configs
+Copyright (c) 2014 Jolla Ltd.
+Contact: Simonas Leleiva <simonas.leleiva@jollamobile.com>
+
+Splitting .ks generation into -configs package.
+
+Currently droid-hal-device is built with mb2 tool on a local machine.
+
+However that does not provide any differentiation between release and devel
+builds, and would cause duplicate runs.
+
+Splitting parts which depend on qa_stage_devel macro (set to 1 in mer:core:devel
+prjconfig, and to 0 in the remaining mer:core:*) into this OBS-buildable package
+is the current approach.
+

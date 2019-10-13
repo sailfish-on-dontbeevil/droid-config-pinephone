@@ -1,0 +1,39 @@
+# To enable PulseAudio fmradio device configuration make a symlink from
+# this file to fmradio.conf in sparse/etc/pulse/xpolicy.conf.d
+# If input fm port is different from default add
+# sparse/etc/pulse/xpolicy.conf.d/xvars.conf with input port name
+# used in your device.
+
+[device]
+type  = headphoneasfmradio
+source= droid.input.external@equals:true
+ports = droid.input.external@equals:true->$droid_source_input_fmradio
+flags = refresh_always
+
+[device]
+type  = headphoneasfmradiolp
+source= droid.input.external@equals:true
+ports = droid.input.external@equals:true->$droid_source_input_fmradio
+module= module-loopback@sink_input_properties='media.role=x-maemo%20media.name=fmradio-loopback'%20source_output_properties='media.name=fmradio-loopback-source'%20latency_msec=250
+flags = refresh_always, module_unload_immediately
+
+[device]
+type  = headsetasfmradio
+source= droid.input.external@equals:true
+ports = droid.input.external@equals:true->$droid_source_input_fmradio
+flags = refresh_always
+
+[device]
+type  = headsetasfmradiolp
+source= droid.input.external@equals:true
+ports = droid.input.external@equals:true->$droid_source_input_fmradio
+module= module-loopback@sink_input_properties='media.role=x-maemo%20media.name=fmradio-loopback'%20source_output_properties='media.name=fmradio-loopback-source'%20latency_msec=250
+flags = refresh_always, module_unload_immediately
+
+[stream]
+property = media.name@equals:"fmradio-loopback"
+group    = player
+
+[stream]
+property = media.name@equals:"fmradio-loopback-source"
+group    = player
