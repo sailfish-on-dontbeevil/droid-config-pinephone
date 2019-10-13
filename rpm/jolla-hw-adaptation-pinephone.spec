@@ -1,6 +1,6 @@
 Name: jolla-hw-adaptation-pinephone
 Summary: Jolla HW Adaptation PinePhone
-Version: 0.0.2
+Version: 0.0.1
 Release: 1
 License: BSD-3-Clause
 Source: %{name}-%{version}.tar.gz
