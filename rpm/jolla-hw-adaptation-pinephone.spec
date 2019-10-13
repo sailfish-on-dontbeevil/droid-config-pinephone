@@ -66,16 +66,16 @@ Requires: geoclue
 # For mounting SD card automatically
 Requires: sd-utils
 
-Requires: droid-hal-kernel-dontbeevil
-Requires: droid-config-dontbeevil-sailfish
-Requires: droid-config-dontbeevil-pulseaudio-settings
-Requires: droid-config-dontbeevil-policy-settings
-Requires: droid-config-dontbeevil-preinit-plugin
-Requires: droid-config-dontbeevil-bluez5
-Requires: droid-hal-version-dontbeevil
+Requires: droid-hal-kernel-pine
+Requires: droid-config-pinephone-sailfish
+Requires: droid-config-pinephone-pulseaudio-settings
+Requires: droid-config-pinephone-policy-settings
+Requires: droid-config-pinephone-preinit-plugin
+Requires: droid-config-pinephone-bluez5
+Requires: droid-hal-version-pinephone
 #Requires: droid-config-donebeevil-flashing
 
 %description
-Meta package to install packages for dontbeevil HW Adaptation
+Meta package to install packages for PinePhone HW Adaptation
 %files
  
