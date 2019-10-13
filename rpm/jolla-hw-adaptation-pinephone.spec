@@ -1,6 +1,6 @@
-Name: jolla-hw-adaptation-dontbeevil
-Summary: Jolla HW Adaptation dontbeevil
-Version: 0.0.1
+Name: jolla-hw-adaptation-pinephone
+Summary: Jolla HW Adaptation PinePhone
+Version: 0.0.2
 Release: 1
 License: BSD-3-Clause
 Source: %{name}-%{version}.tar.gz

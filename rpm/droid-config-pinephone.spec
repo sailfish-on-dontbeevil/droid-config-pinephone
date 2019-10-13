@@ -1,11 +1,11 @@
 # These and other macros are documented in ../droid-configs-device/droid-configs.inc
 # Feel free to cleanup this file by removing comments, once you have memorised them ;)
 
-%define device dontbeevil
+%define device pinephone
 %define vendor pine64
 
 %define vendor_pretty Pine64
-%define device_pretty Pinephone
+%define device_pretty PinePhone
 
 # Community HW adaptations need this
 %define community_adaptation 1

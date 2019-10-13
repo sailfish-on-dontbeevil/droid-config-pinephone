@@ -1,10 +1,10 @@
-Name: jolla-configuration-dontbeevil
-Summary: Jolla Configuration dontbeevil
+Name: jolla-configuration-pinephone
+Summary: Jolla Configuration PinePhone
 Version: 0.0.1
 Release: 1
 License: BSD-3-Clause
 Source: %{name}-%{version}.tar.gz
-Requires: jolla-hw-adaptation-dontbeevil
+Requires: jolla-hw-adaptation-pinephone
 Requires: patterns-sailfish-cellular-apps
 Requires: patterns-sailfish-applications
 Requires: patterns-sailfish-ui
@@ -39,5 +39,5 @@ Requires: geoclue-provider-mlsdb
 Requires: csd
 
 %description
-Meta package to install packages for dontbeevil configurations
+Meta package to install packages for PinePhone configurations
 %files 
