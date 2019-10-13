@@ -1,2 +1,0 @@
-/desktop/sailfish/silica/theme_pixel_ratio
-/desktop/sailfish/silica/theme_icon_subdir

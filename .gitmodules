@@ -1,0 +1,3 @@
+[submodule "droid-hal-configs"]
+	path = droid-hal-configs
+	url = https://github.com/piggz/droid-hal-configs

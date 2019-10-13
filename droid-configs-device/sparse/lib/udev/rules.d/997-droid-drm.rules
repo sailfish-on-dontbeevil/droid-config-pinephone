@@ -1,1 +1,0 @@
-SUBSYSTEM=="drm", SYMLINK+="dri/%k"
