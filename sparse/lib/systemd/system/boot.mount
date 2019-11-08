@@ -1,0 +1,11 @@
+[Unit]
+Description=Mount boot partition
+
+[Mount]
+What=/dev/mmcblk0p1
+Where=/boot
+Type=ext4
+Options=defaults,noatime
+
+[Install]
+WantedBy=local-fs.target
