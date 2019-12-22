@@ -23,6 +23,7 @@ Requires: bluez5-tools
 # Vibra
 Requires: ngfd-plugin-native-vibrator
 Requires: qt5-feedback-haptics-native-vibrator
+Requires: qt5-feedback-haptics-ffmemless
 
 # Sensors
 #Requires: hybris-libsensorfw-qt5
