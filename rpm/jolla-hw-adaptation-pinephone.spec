@@ -63,6 +63,7 @@ Requires: jolla-devicelock-plugin-encsfa
 # For GPS
 Requires: gpsd
 Requires: geoclue
+Requires: geoclue-provider-gpsd3
 
 # For mounting SD card automatically
 Requires: sd-utils

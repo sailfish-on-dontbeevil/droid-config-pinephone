@@ -4,13 +4,17 @@
 # Based on: https://zedm.net/archives/tag/device-hook
 # This script needs to be owned by root and be accessible from the dialout group with permissions 750.
 #
-if [ "$1" = "/dev/EG25.NMEA" ] && [ "$2" = "ACTIVATE" ];
+if [ "$1" == "/dev/EG25.NMEA" ] && [ "$2" == "ACTIVATE" ];
 then
+	echo "Activating EG25 GPS receiver"
         echo "AT+QGPS=1" > "/dev/EG25.AT"
         sleep 5
+elif [ "$1" == "/dev/EG25.NMEA" ] && [ "$2" == "DEACTIVATE" ];
+then
+	echo "Deactivating EG25 GPS receiver"
+        echo "AT+QGPSEND" > "/dev/EG25.AT"
 else
-        if [ "$1" = "/dev/EG25.NMEA" ] && [ "$2" = "DEACTIVATE" ];
-        then
-        echo "AT+QGPS=0" > "/dev/EG25.AT"
-        fi
+	echo "Unhandeled arguments: $1 $2"
+	exit 1
 fi
+
