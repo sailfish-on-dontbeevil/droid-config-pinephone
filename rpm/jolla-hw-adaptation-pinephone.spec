@@ -16,7 +16,11 @@ Requires: mesa-libglapi
 Requires: wayland-egl
 Requires: qt5-plugin-platform-eglfs
 
-# bluetooth tools
+# Splash screen
+Requires: plymouth-lite
+Requires: plymouth-lite-theme-default
+
+# Bluetooth tools
 Requires: bluez5-tools
 #Requires: bluetooth-rfkill-event-hciattach
 
