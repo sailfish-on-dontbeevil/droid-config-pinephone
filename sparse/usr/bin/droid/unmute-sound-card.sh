@@ -1,6 +1,4 @@
 #!/bin/bash
-# Unmute the A64 sound card at boot
-
 # Configure A64 sound card in ALSA
 CARD=1 # A64 sound card
 amixer -c $CARD set 'AIF1 Slot 0 Digital DAC' unmute
