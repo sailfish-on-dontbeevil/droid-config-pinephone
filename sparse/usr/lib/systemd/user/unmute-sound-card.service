@@ -1,5 +1,6 @@
 [Unit]
 Description=Unmutes the A64 sound card at boot for PulseAudio
+After=pulseaudio.service
 
 [Service]
 Type=oneshot
