@@ -12,6 +12,7 @@ Requires:
 - patterns-sailfish-cellular-apps
 # Early stages of porting benefit from these:
 - pattern:sailfish-porter-tools
+- patterns-sailfish-consumer-generic
 
 - sailfish-content-graphics-z@ICON_RES@
 
