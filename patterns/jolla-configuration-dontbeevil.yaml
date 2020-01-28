@@ -10,8 +10,6 @@ Requires:
 - patterns-sailfish-ui
 # For devices with cellular modem. Those without one, please comment out:
 - patterns-sailfish-cellular-apps
-# Early stages of porting benefit from these:
-- pattern:sailfish-porter-tools
 - patterns-sailfish-consumer-generic
 
 - sailfish-content-graphics-z@ICON_RES@
