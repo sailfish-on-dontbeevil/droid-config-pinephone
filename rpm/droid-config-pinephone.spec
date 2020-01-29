@@ -25,3 +25,13 @@
 # sign, otherwise they will remain defined! E.g.:
 #define some_macro "I'll not be defined because I don't have % in front"
 
+#pre-install script to add users and groups that would be create by DHD
+#this is temporary until the sailfish-setup package is available
+%pre
+useradd -rf nfc || :
+useradd -rf radio || :
+groupadd -rf system || :
+usermod -a -G system nemo || :
+groupadd -rf media || :
+usermod -a -G media nemo || :
+exit 0
