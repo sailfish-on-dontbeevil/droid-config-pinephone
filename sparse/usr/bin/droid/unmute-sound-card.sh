@@ -6,4 +6,13 @@ amixer -c $CARD set 'Line Out' unmute
 amixer -c $CARD set 'Line Out' 100%
 
 # Set A64 sound card as default sink for Pulseaudio
-pacmd set-default-sink alsa_output.platform-sound.stereo-fallback
+# Wait until the device appears
+SOURCE="alsa_output.platform-sound.stereo-fallback"
+while ! pactl list sources | grep "$SOURCE"
+do 
+        echo "Waiting for: $SOURCE"
+        sleep 1
+done
+pacmd set-default-sink $SOURCE
+
+echo "Done"
