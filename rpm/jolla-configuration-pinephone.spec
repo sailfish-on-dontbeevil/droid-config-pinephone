@@ -29,7 +29,7 @@ Requires: jolla-rnd-device
 # Jolla Store Items
 Requires: patterns-sailfish-consumer-generic
 
-Requires: sailfish-content-graphics-z1.25
+Requires: sailfish-content-graphics-z1.0
 Requires: jolla-settings-accounts-extensions-3rd-party-all
 
 # For Mozilla location services (online)
