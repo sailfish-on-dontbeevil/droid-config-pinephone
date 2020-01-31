@@ -1,5 +1,6 @@
 # These and other macros are documented in ../droid-configs-device/droid-configs.inc
 # Feel free to cleanup this file by removing comments, once you have memorised them ;)
+Requires(pre):sailfish-setup
 
 %define device pinephone
 %define vendor pine
