@@ -1,0 +1,12 @@
+[Unit]
+Description=Setup configfs
+After=lecal-fs.target
+Before=usb-moded.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/droid/setup-configfs.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=basic.target
