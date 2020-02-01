@@ -28,11 +28,11 @@ Requires(pre):sailfish-setup
 
 #pre-install script to add users and groups that would be create by DHD
 #this is temporary until the sailfish-setup package is available
+#Note - disabled until sailfish-setup package is available which will create
+#users and groups
 %pre
 useradd -rf nfc || :
 useradd -rf radio || :
-groupadd -rf system || :
-usermod -a -G system nemo || :
-groupadd -rf media || :
-usermod -a -G media nemo || :
-exit 0
+#groupadd -rf system || :
+#usermod -a -G system nemo || :
+#exit 0
