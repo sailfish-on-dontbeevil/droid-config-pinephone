@@ -1,6 +1,6 @@
 [Unit]
 Description=Setup configfs
-After=lecal-fs.target
+After=local-fs.target
 Before=usb-moded.service
 
 [Service]
