@@ -28,6 +28,7 @@ Requires: jolla-rnd-device
 
 # Jolla Store Items
 Requires: patterns-sailfish-consumer-generic
+Requires: patterns-sailfish-store-applications
 
 Requires: sailfish-content-graphics-z1.0
 Requires: jolla-settings-accounts-extensions-3rd-party-all
@@ -37,6 +38,9 @@ Requires: geoclue-provider-mlsdb
 
 # Sailfish OS CSD tool for hardware testing
 Requires: csd
+
+# KMod required for kmod-static-nodes.service 
+Requires: kmod
 
 %description
 Meta package to install packages for PinePhone configurations
