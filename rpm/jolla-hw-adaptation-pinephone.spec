@@ -72,6 +72,12 @@ Requires: geoclue-provider-gpsd3
 # For mounting SD card automatically
 Requires: sd-utils
 
+# sound
+Requires: alsa-utils
+
+# Bluetooth binaries
+Requires: realtek-bt-firmware
+
 Requires: droid-hal-kernel-pine
 Requires: droid-config-pinephone-sailfish
 Requires: droid-config-pinephone-pulseaudio-settings
