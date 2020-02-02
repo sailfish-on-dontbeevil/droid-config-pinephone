@@ -1,6 +1,6 @@
 # These and other macros are documented in ../droid-configs-device/droid-configs.inc
 # Feel free to cleanup this file by removing comments, once you have memorised them ;)
-Requires(pre):sailfish-setup
+#Requires(pre):sailfish-setup
 
 %define device pinephone
 %define vendor pine
@@ -31,8 +31,8 @@ Requires(pre):sailfish-setup
 #Note - disabled until sailfish-setup package is available which will create
 #users and groups
 %pre
-useradd -rf nfc || :
-useradd -rf radio || :
+#useradd -r -d / -s /sbin/nologin nfc || :
+#useradd -r -d / -s /sbin/nologin radio || :
 #groupadd -rf system || :
 #usermod -a -G system nemo || :
-#exit 0
+exit 0
