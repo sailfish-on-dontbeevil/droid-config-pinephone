@@ -1,0 +1,12 @@
+[Unit]
+Description=Setup BT address file
+After=bluetooth.service
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/droid/droid-get-bt-address.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=bluetooth.target
