@@ -150,3 +150,5 @@ load-module module-filter-apply
 load-module module-dbus-protocol
 .endif
 
+set-default-sink sink.sun50i
+set-default-source source.sun50i
