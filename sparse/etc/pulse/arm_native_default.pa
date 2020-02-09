@@ -20,6 +20,12 @@
 
 .fail
 
+# Sailfish OS specific PulseAudio modules
+load-module module-keepalive
+load-module module-meego-parameters cache=1 directory=/var/lib/nemo-pulseaudio-parameters use_voice=false
+load-module module-meego-mainvolume virtual_stream=false
+load-module module-match table=/etc/pulse/x-maemo-match.table key=application.name
+
 ### Automatically restore the volume of streams and devices
 load-module module-device-restore
 load-module module-stream-restore
@@ -35,20 +41,20 @@ load-module module-switch-on-port-available
 ### Load audio drivers statically
 ### (it's probably better to not load these drivers manually, but instead
 ### use module-udev-detect -- see below -- for doing this automatically)
-load-module module-alsa-sink
-load-module module-alsa-source device=hw:1,0
+load-module module-alsa-card device_id=0 card_name=card.sun50i sink_name=sink.sun50i source_name=source.sun50i rate=44100
+
 #load-module module-oss device="/dev/dsp" sink_name=output source_name=input
 #load-module module-oss-mmap device="/dev/dsp" sink_name=output source_name=input
 #load-module module-null-sink
 #load-module module-pipe-sink
 
 ### Automatically load driver modules depending on the hardware available
-.ifexists module-udev-detect.so
-load-module module-udev-detect
-.else
+#.ifexists module-udev-detect.so
+#load-module module-udev-detect
+#.else
 ### Use the static hardware detection module (for systems that lack udev support)
-load-module module-detect
-.endif
+#load-module module-detect
+#.endif
 
 ### Automatically connect sink and source if JACK server is present
 .ifexists module-jackdbus-detect.so
@@ -143,3 +149,6 @@ load-module module-filter-apply
 .ifexists module-dbus-protocol.so
 load-module module-dbus-protocol
 .endif
+
+set-default-sink sink.sun50i
+set-default-source source.sun50i
