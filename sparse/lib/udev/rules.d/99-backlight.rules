@@ -1,0 +1,2 @@
+KERNEL=="backlight", KERNELS=="backlight", DRIVERS=="pwm-backlight", TAG+="systemd"
+ 
