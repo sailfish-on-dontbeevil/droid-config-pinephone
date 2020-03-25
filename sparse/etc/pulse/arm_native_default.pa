@@ -43,6 +43,8 @@ load-module module-switch-on-port-available
 ### use module-udev-detect -- see below -- for doing this automatically)
 load-module module-alsa-card device_id=0 card_name=card.sun50i sink_name=sink.sun50i source_name=source.sun50i rate=44100
 
+load-module module-policy-enforcement
+
 #load-module module-oss device="/dev/dsp" sink_name=output source_name=input
 #load-module module-oss-mmap device="/dev/dsp" sink_name=output source_name=input
 #load-module module-null-sink
