@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable autobrightness
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/droid/disable-autobrightness.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
