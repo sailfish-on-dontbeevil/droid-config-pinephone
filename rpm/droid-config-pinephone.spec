@@ -25,14 +25,3 @@
 # IMPORTANT if you want to comment out any macros in your .spec, delete the %
 # sign, otherwise they will remain defined! E.g.:
 #define some_macro "I'll not be defined because I don't have % in front"
-
-#pre-install script to add users and groups that would be create by DHD
-#this is temporary until the sailfish-setup package is available
-#Note - disabled until sailfish-setup package is available which will create
-#users and groups
-%pre
-#useradd -r -d / -s /sbin/nologin nfc || :
-#useradd -r -d / -s /sbin/nologin radio || :
-#groupadd -rf system || :
-#usermod -a -G system nemo || :
-exit 0
