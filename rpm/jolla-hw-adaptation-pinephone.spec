@@ -75,6 +75,9 @@ Requires: sd-utils
 # sound
 Requires: alsa-utils
 
+# Cameras
+Requires: v4l-utils
+
 # Bluetooth binaries
 Requires: realtek-bt-firmware
 
