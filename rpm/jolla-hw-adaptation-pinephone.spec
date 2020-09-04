@@ -78,7 +78,7 @@ Requires: alsa-utils
 # Bluetooth binaries
 Requires: realtek-bt-firmware
 
-Requires: droid-hal-kernel-pine
+Requires: kernel-adaptation-pine64
 Requires: droid-config-pinephone-sailfish
 Requires: droid-config-pinephone-pulseaudio-settings
 Requires: droid-config-pinephone-policy-settings
