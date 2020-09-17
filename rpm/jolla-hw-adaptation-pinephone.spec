@@ -90,6 +90,9 @@ Requires: droid-config-pinephone-bluez5
 Requires: droid-hal-version-pinephone
 #Requires: droid-config-donebeevil-flashing
 
+#Include atinout to talk to the modem
+Requires: atinout
+
 %description
 Meta package to install packages for PinePhone HW Adaptation
 %files
