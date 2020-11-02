@@ -1,0 +1,151 @@
+SectionVerb {
+	EnableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Headphone Playback Switch' 0"
+		cset "name='Headphone Source Playback Route' DAC"
+		cset "name='Line In Playback Switch' 0"
+		cset "name='Line Out Playback Switch' 0"
+		cset "name='Line Out Source Playback Route' Mono Differential"
+		cset "name='Mic1 Playback Switch' 0"
+		cset "name='Mic2 Playback Switch' 0"
+		cset "name='AIF1 DA0 Playback Volume' 160"
+		cset "name='AIF3 ADC Source Capture Route' None"
+		cset "name='AIF2 DAC Source Playback Route' AIF2"
+		cset "name='DAC Playback Switch' 1"
+		cset "name='DAC Playback Volume' 160"
+		cset "name='ADC Digital DAC Playback Switch' 0"
+		cset "name='AIF1 Slot 0 Digital DAC Playback Switch' 1"
+		cset "name='AIF2 Digital DAC Playback Switch' 0"
+		cset "name='DAC Reversed Playback Switch' 0"
+		cset "name='Earpiece Playback Switch' 0"
+		cset "name='Earpiece Source Playback Route' DACL"
+
+		cset "name='Line In Capture Switch' 0"
+		cset "name='Mic1 Capture Switch' 0"
+		cset "name='Mic2 Capture Switch' 0"
+		cset "name='Mixer Capture Switch' 0"
+		cset "name='Mixer Reversed Capture Switch' 0"
+		cset "name='ADC Capture Volume' 160"
+		cset "name='AIF1 AD0 Capture Volume' 160"
+		cset "name='AIF1 Data Digital ADC Capture Switch' 1"
+		cset "name='AIF2 ADC Mixer ADC Capture Switch' 0"
+		cset "name='AIF2 ADC Mixer AIF1 DA0 Capture Switch' 0"
+		cset "name='AIF2 ADC Mixer AIF2 DAC Rev Capture Switch' 0"
+		cset "name='AIF2 ADC Mixer AIF1 DA0 Capture Switch' 0"
+		cset "name='AIF2 ADC Mixer AIF1 DA0 Capture Switch' 0"
+	]
+	DisableSequence [
+	]
+	Value {
+		PlaybackPCM "hw:CARD=PinePhone"
+		PlaybackPCM "hw:CARD=PinePhone"
+	}
+}
+
+SectionDevice."Speaker".0 {
+	Comment "Internal speaker"
+	EnableSequence [
+		cdev "hw:PinePhone"
+		cset "name='AIF1 DA0 Stereo Playback Route' Mix Mono"
+		cset "name='Line Out Playback Switch' 1"
+		cset "name='Line Out Playback Volume' 80"
+	]
+
+	DisableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Line Out Playback Switch' 0"
+	]
+
+	Value {
+		PlaybackVolume "Line Out Playback Volume"
+		PlaybackSwitch "Line Out Playback Switch"
+		PlaybackChannels "2"
+		PlaybackPriority 300
+		PlaybackPCM "hw:CARD=PinePhone"
+	}
+}
+SectionDevice."Earpiece".0 {
+	Comment "Internal Earpiece"
+	EnableSequence [
+		cdev "hw:PinePhone"
+		cset "name='AIF1 DA0 Stereo Playback Route' Mix Mono"
+		cset "name='Earpiece Playback Switch' 1"
+		cset "name='Earpiece Playback Volume' 100"
+	]
+
+	DisableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Earpiece Playback Switch' 0"
+	]
+
+	Value {
+		PlaybackVolume "Earpiece Playback Volume"
+		PlaybackSwitch "Earpiece Playback Switch"
+		PlaybackChannels "2"
+		PlaybackPriority 100
+		PlaybackPCM "hw:CARD=PinePhone"
+	}
+}
+SectionDevice."DigitalMic".0 {
+	Comment "Internal Microphone"
+	ConflictingDevice [
+		"HeadsetMic"
+	]
+	EnableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Mic1 Capture Switch' 1"
+	]
+	DisableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Mic1 Capture Switch' 0"
+	]
+	Value {
+		CapturePriority 100
+		CapturePCM "hw:CARD=PinePhone"
+		CaptureChannels "2"
+	}
+}
+SectionDevice."HeadsetMic".0 {
+	Comment "Headset Microphone"
+	ConflictingDevice [
+		"DigitalMic"
+	]
+	EnableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Mic2 Capture Switch' 1"
+	]
+	DisableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Mic2 Capture Switch' 0"
+	]
+	Value {
+		CapturePriority 200
+		CapturePCM "hw:CARD=PinePhone"
+		CaptureChannels "2"
+		JackControl "Headset Microphone Jack"
+	}
+}
+SectionDevice."Headphone".0 {
+	Comment "Headphones"
+	EnableSequence [
+		cdev "hw:PinePhone"
+		cset "name='AIF1 DA0 Stereo Playback Route' Reverse Stereo"
+		cset "name='Headphone Playback Switch' 1"
+		cset "name='Headphone Playback Volume' 70"
+	]
+
+	DisableSequence [
+		cdev "hw:PinePhone"
+		cset "name='Headphone Playback Switch' 0"
+	]
+
+	Value {
+		PlaybackVolume "Headphone Playback Volume"
+		PlaybackSwitch "Headphone Playback Switch"
+		PlaybackChannels "2"
+		PlaybackPriority 500
+		PlaybackPCM "hw:CARD=PinePhone"
+		JackControl "Headphone Jack"
+	}
+}
+
