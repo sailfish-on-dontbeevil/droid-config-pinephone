@@ -33,6 +33,7 @@ Requires: qt5-feedback-haptics-ffmemless
 #Requires: hybris-libsensorfw-qt5
 
 #PA needs work
+Requires: pulseaudio-module-keepalive
 #Requires: pulseaudio-modules-droid
 #Requires: pulseaudio-modules-droid-glue
 
