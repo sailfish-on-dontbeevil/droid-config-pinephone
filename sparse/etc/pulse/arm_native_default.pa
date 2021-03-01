@@ -20,16 +20,10 @@
 
 .fail
 
-# Sailfish OS specific PulseAudio modules
+### Sailfish OS specific PulseAudio modules
 load-module module-keepalive
-load-module module-meego-parameters cache=1 directory=/var/lib/nemo-pulseaudio-parameters use_voice=false
-load-module module-meego-mainvolume virtual_stream=false
+load-module module-meego-parameters cache=1 directory=/var/lib/nemo-pulseaudio-parameters
 load-module module-match table=/etc/pulse/x-maemo-match.table key=application.name
-
-### Automatically restore the volume of streams and devices
-load-module module-device-restore
-load-module module-stream-restore
-load-module module-card-restore
 
 ### Automatically augment property information from .desktop files
 ### stored in /usr/share/application
@@ -43,11 +37,22 @@ load-module module-switch-on-port-available
 ### use module-udev-detect -- see below -- for doing this automatically)
 load-module module-alsa-card device_id=0 rate=44100
 
+### Add null sink/sources
+load-module module-null-sink sink_name=sink.null rate=48000
+load-module module-null-sink sink_name=sink.fake.sco rate=8000 channels=1
+load-module module-null-source source_name=source.fake.sco rate=8000 channels=1
+
+### Main volme control plugin
+load-module module-meego-mainvolume virtual_stream=true
+
+### Automatically restore the volume of streams
+# Requred for mainvolume control to work
+.include /etc/pulse/bluez5_stream_restore.pa
+
+load-module module-role-ducking trigger_roles=notification,warning ducking_roles=x-maemo volume=-12dB duck_while_corked=true
+
 load-module module-policy-enforcement
 
-#load-module module-oss device="/dev/dsp" sink_name=output source_name=input
-#load-module module-oss-mmap device="/dev/dsp" sink_name=output source_name=input
-#load-module module-null-sink
 #load-module module-pipe-sink
 
 ### Automatically load driver modules depending on the hardware available
@@ -142,10 +147,6 @@ load-module module-role-cork
 ### loading modules and rerouting streams.
 load-module module-filter-heuristics
 load-module module-filter-apply
-
-### Make some devices default
-#set-default-sink output
-#set-default-source input
 
 ### Load DBus protocol
 .ifexists module-dbus-protocol.so
