@@ -38,7 +38,7 @@ Requires:
 # These need to be per-device due to differing backends (fbdev, eglfs, hwc, ..?)
 #- qt5-qtwayland-wayland_egl
 #- qt5-qpa-hwcomposer-plugin
-#- qtscenegraph-adaptation
+- qtscenegraph-adaptation
 
 # Add GStreamer v1.0 as standard
 - gstreamer1.0
