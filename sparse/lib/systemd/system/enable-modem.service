@@ -1,9 +1,0 @@
-[Unit]
-Description=Enable the EG25 modem at boot
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/droid/enable-modem.sh
-
-[Install]
-WantedBy=basic.target

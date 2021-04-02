@@ -1,9 +1,0 @@
-[Unit]
-Description=Disable the EG25 modem at shutdown
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/droid/disable-modem.sh
-
-[Install]
-WantedBy=poweroff.target

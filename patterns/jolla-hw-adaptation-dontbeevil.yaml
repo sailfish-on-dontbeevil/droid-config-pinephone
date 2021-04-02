@@ -84,6 +84,9 @@ Requires:
 # For devices with SD Card
 #- sd-utils
 
+# To manage the modem
+- eg25-manager
+
 # WiFi/BT regulator DB
 - wireless-regdb
 
