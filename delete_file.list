@@ -2,11 +2,11 @@
 /usr/bin/droid/droid-hal-startup.sh
 /usr/bin/droid/droid-init-done.sh
 /usr/bin/droid/droid-load-firmware.sh
-/lib/systemd/system/actdead.target.wants/droid-hal-init.service
-/lib/systemd/system/droid-hal-init.service
-/lib/systemd/system/droid-late-start.service
-/lib/systemd/system/graphical.target.wants/droid-hal-init.service
-/lib/systemd/system/graphical.target.wants/droid-late-start.service
+/usr/lib/systemd/system/actdead.target.wants/droid-hal-init.service
+/usr/lib/systemd/system/droid-hal-init.service
+/usr/lib/systemd/system/droid-late-start.service
+/usr/lib/systemd/system/graphical.target.wants/droid-hal-init.service
+/usr/lib/systemd/system/graphical.target.wants/droid-late-start.service
 /etc/media_codecs.xml
 /etc/media_codecs_ffmpeg.xml
 /etc/media_codecs_google_audio.xml
