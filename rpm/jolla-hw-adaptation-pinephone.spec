@@ -93,6 +93,7 @@ Requires: droid-hal-version-pinephone
 
 #Include atinout to talk to the modem
 Requires: atinout
+Requires: eg25-manager
 
 %description
 Meta package to install packages for PinePhone HW Adaptation
