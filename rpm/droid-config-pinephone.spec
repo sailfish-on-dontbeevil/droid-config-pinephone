@@ -21,6 +21,8 @@
 %define native_build 1
 
 %include droid-configs-device/droid-configs.inc
+%include patterns/patterns-sailfish-device-adaptation-pinephone.inc
+%include patterns/patterns-sailfish-device-configuration-pinephone.inc
 
 # IMPORTANT if you want to comment out any macros in your .spec, delete the %
 # sign, otherwise they will remain defined! E.g.:

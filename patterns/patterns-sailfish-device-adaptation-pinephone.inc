@@ -1,9 +1,5 @@
-Name: jolla-hw-adaptation-pinephone
-Summary: Jolla HW Adaptation PinePhone
-Version: 0.0.1
-Release: 1
-License: BSD-3-Clause
-Source: %{name}-%{version}.tar.gz
+%package -n patterns-sailfish-device-adaptation-pinephone
+Summary: Sailfish HW Adaptation Pinephone
 
 Requires: qt5-plugin-generic-evdev
 
@@ -32,16 +28,15 @@ Requires: qt5-feedback-haptics-ffmemless
 # Sensors
 #Requires: hybris-libsensorfw-qt5
 
-#PA needs work
+# Pulseaudio
 Requires: pulseaudio-module-keepalive
-#Requires: pulseaudio-modules-droid
-#Requires: pulseaudio-modules-droid-glue
 
 # for audio recording to work:
 Requires: qt5-qtmultimedia-plugin-mediaservice-gstmediacapture
 
 # These need to be per-device due to differing backends (fbdev, eglfs, hwc, ..?)
 Requires: qt5-qtwayland-wayland_egl
+Requires: qtscenegraph-adaptation
 
 # Add GStreamer v1.0 as standard
 Requires: gstreamer1.0
@@ -95,7 +90,8 @@ Requires: droid-hal-version-pinephone
 Requires: atinout
 Requires: eg25-manager
 
-%description
-Meta package to install packages for PinePhone HW Adaptation
-%files
+%description -n patterns-sailfish-device-adaptation-pinephone
+Pattern with packages for pinephone HW Adaptation
+
+%files -n patterns-sailfish-device-adaptation-pinephone
  

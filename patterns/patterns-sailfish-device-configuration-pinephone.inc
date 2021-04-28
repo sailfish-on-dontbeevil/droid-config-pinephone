@@ -1,10 +1,9 @@
-Name: jolla-configuration-pinephone
-Summary: Jolla Configuration PinePhone
-Version: 0.0.1
-Release: 1
-License: BSD-3-Clause
-Source: %{name}-%{version}.tar.gz
-Requires: jolla-hw-adaptation-pinephone
+%package -n patterns-sailfish-device-configuration-pinephone
+Summary: Sailfish Configuration Pinephone
+
+Requires: patterns-sailfish-device-configuration-common-pinephone
+Requires: patterns-sailfish-device-adaptation-pinephone
+
 Requires: patterns-sailfish-cellular-apps
 Requires: patterns-sailfish-applications
 Requires: patterns-sailfish-ui
@@ -42,6 +41,7 @@ Requires: csd
 # KMod required for kmod-static-nodes.service 
 Requires: kmod
 
-%description
-Meta package to install packages for PinePhone configurations
-%files 
+%description -n patterns-sailfish-device-configuration-pinephone
+Pattern with packages for pinephone configurations
+
+%files -n patterns-sailfish-device-configuration-pinephone
