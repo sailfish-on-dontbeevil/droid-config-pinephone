@@ -90,6 +90,9 @@ Requires: droid-hal-version-pinephone
 Requires: atinout
 Requires: eg25-manager
 
+# Enable home encryption
+Requires: sailfish-device-encryption-community
+
 %description -n patterns-sailfish-device-adaptation-pinephone
 Pattern with packages for pinephone HW Adaptation
 
