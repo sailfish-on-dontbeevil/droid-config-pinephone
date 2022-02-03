@@ -2,11 +2,11 @@
 # Feel free to cleanup this file by removing comments, once you have memorised them ;)
 #Requires(pre):sailfish-setup
 
-%define device pinephone
+%define device pinephonepro
 %define vendor pine
 
 %define vendor_pretty Pine64
-%define device_pretty PinePhone
+%define device_pretty PinePhone Pro
 
 # Community HW adaptations need this
 %define community_adaptation 1
@@ -21,8 +21,8 @@
 %define native_build 1
 
 %include droid-configs-device/droid-configs.inc
-%include patterns/patterns-sailfish-device-adaptation-pinephone.inc
-%include patterns/patterns-sailfish-device-configuration-pinephone.inc
+%include patterns/patterns-sailfish-device-adaptation-pinephonepro.inc
+%include patterns/patterns-sailfish-device-configuration-pinephonepro.inc
 
 # IMPORTANT if you want to comment out any macros in your .spec, delete the %
 # sign, otherwise they will remain defined! E.g.:

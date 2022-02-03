@@ -1,8 +1,8 @@
-%package -n patterns-sailfish-device-configuration-pinephone
-Summary: Sailfish Configuration Pinephone
+%package -n patterns-sailfish-device-configuration-pinephonepro
+Summary: Sailfish Configuration Pinephone Pro
 
-Requires: patterns-sailfish-device-configuration-common-pinephone
-Requires: patterns-sailfish-device-adaptation-pinephone
+Requires: patterns-sailfish-device-configuration-common-pinephonepro
+Requires: patterns-sailfish-device-adaptation-pinephonepro
 
 Requires: patterns-sailfish-cellular-apps
 Requires: patterns-sailfish-applications
@@ -41,7 +41,7 @@ Requires: csd
 # KMod required for kmod-static-nodes.service 
 Requires: kmod
 
-%description -n patterns-sailfish-device-configuration-pinephone
-Pattern with packages for pinephone configurations
+%description -n patterns-sailfish-device-configuration-pinephonepro
+Pattern with packages for pinephone pro configurations
 
-%files -n patterns-sailfish-device-configuration-pinephone
+%files -n patterns-sailfish-device-configuration-pinephonepro
