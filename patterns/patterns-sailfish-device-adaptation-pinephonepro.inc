@@ -73,8 +73,8 @@ Requires: alsa-utils
 # Cameras
 Requires: v4l-utils
 
-# Bluetooth binaries
-Requires: realtek-bt-firmware
+# Firmware
+Requires: firmware-pine64-pinephonepro
 
 Requires: kernel-adaptation-pinephonepro
 Requires: droid-config-pinephonepro-sailfish
