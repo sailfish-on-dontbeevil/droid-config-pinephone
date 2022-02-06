@@ -75,6 +75,7 @@ Requires: v4l-utils
 
 # Firmware
 Requires: firmware-pine64-pinephonepro
+Requires: wireless-regdb
 
 Requires: kernel-adaptation-pinephonepro
 Requires: droid-config-pinephonepro-sailfish
