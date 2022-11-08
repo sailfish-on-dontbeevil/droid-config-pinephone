@@ -20,6 +20,10 @@
 
 %define native_build 1
 
+# Device-specific usb-moded configuration
+Provides: usb-moded-configs
+Obsoletes: usb-moded-defaults
+
 %include droid-configs-device/droid-configs.inc
 %include patterns/patterns-sailfish-device-adaptation-pinephonepro.inc
 %include patterns/patterns-sailfish-device-configuration-pinephonepro.inc
