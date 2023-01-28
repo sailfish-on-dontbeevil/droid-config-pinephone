@@ -16,7 +16,7 @@ write $GADGET_DIR/g1/idProduct                  "0xD001"
 mkdir $GADGET_DIR/g1/strings/0x409
 write $GADGET_DIR/g1/strings/0x409/serialnumber "$1"
 write $GADGET_DIR/g1/strings/0x409/manufacturer "Mer Boat Loader"
-write $GADGET_DIR/g1/strings/0x409/product      "Pine64 Pinephne"
+write $GADGET_DIR/g1/strings/0x409/product      "Pine64 Pinephone"
 
 if echo $USB_FUNCTIONS | grep -q "rndis"; then
     mkdir $GADGET_DIR/g1/functions/rndis.usb0
