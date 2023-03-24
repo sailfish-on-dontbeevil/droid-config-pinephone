@@ -24,3 +24,4 @@
 /etc/acdbdata
 /etc/gps.conf
 /etc/audio_platform_info.xml
+/usr/lib/systemd/user/lipstick.service.d/50-compositor.conf
