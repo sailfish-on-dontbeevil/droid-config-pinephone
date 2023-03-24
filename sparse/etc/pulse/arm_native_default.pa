@@ -13,45 +13,28 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU Lesser General Public License
-# along with PulseAudio; if not, see <http://www.gnu.org/licenses/>.
+# along with PulseAudio; if not, write to the Free Software Foundation,
+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
 
 # This startup script is used only if PulseAudio is started per-user
 # (i.e. not in system mode)
 
+.nofail
+
 .fail
 
-### Sailfish OS specific PulseAudio modules
-load-module module-keepalive
-load-module module-meego-parameters cache=1 directory=/var/lib/nemo-pulseaudio-parameters
-load-module module-match table=/etc/pulse/x-maemo-match.table key=application.name
+# Transitional check as keepalive module is moved away from droid modules.
+.ifexists module-keepalive.so
+ load-module module-keepalive
+.else
+ load-module module-droid-keepalive
+.endif
 
-### Automatically augment property information from .desktop files
-### stored in /usr/share/application
-load-module module-augment-properties
-
-### Should be after module-*-restore but before module-*-detect
-load-module module-switch-on-port-available
-
+###Start load native alsa drive
 ### Load audio drivers statically
 ### (it's probably better to not load these drivers manually, but instead
 ### use module-udev-detect -- see below -- for doing this automatically)
 load-module module-alsa-card device_id=0 rate=44100
-
-### Add null sink/sources
-load-module module-null-sink sink_name=sink.null rate=48000
-load-module module-null-sink sink_name=sink.fake.sco rate=8000 channels=1
-load-module module-null-source source_name=source.fake.sco rate=8000 channels=1
-
-### Main volme control plugin
-load-module module-meego-mainvolume virtual_stream=true
-
-### Automatically restore the volume of streams
-# Requred for mainvolume control to work
-.include /etc/pulse/bluez5_stream_restore.pa
-
-load-module module-role-ducking trigger_roles=notification,warning ducking_roles=x-maemo volume=-12dB duck_while_corked=true
-
-load-module module-policy-enforcement
 
 #load-module module-pipe-sink
 
@@ -63,21 +46,28 @@ load-module module-policy-enforcement
 #load-module module-detect
 #.endif
 
-### Automatically connect sink and source if JACK server is present
-.ifexists module-jackdbus-detect.so
-.nofail
-load-module module-jackdbus-detect channels=2
-.fail
-.endif
+###END Load native also drivers
 
-### Automatically load driver modules for Bluetooth hardware
-.ifexists module-bluetooth-policy.so
-load-module module-bluetooth-policy
-.endif
+load-module module-meego-parameters cache=1 directory=/var/lib/nemo-pulseaudio-parameters use_voice=false
+load-module module-meego-mainvolume virtual_stream=true unmute_delay=600
 
-.ifexists module-bluetooth-discover.so
-load-module module-bluetooth-discover
-.endif
+### Automatically restore the volume of streams
+load-module module-stream-restore-nemo restore_device=no restore_volume=yes restore_muted=no route_table=/etc/pulse/x-maemo-route.table fallback_table=/etc/pulse/x-maemo-stream-restore.table use_voice=false
+
+load-module module-match table=/etc/pulse/x-maemo-match.table key=application.name
+
+### Automatically augment property information from .desktop files
+### stored in /usr/share/application
+load-module module-augment-properties
+
+load-module module-null-sink sink_name=sink.null rate=48000
+load-module module-null-source source_name=source.null rate=48000
+
+load-module module-bluetooth-discover headset=droid
+
+load-module module-policy-enforcement
+
+load-module module-role-ducking trigger_roles=notification,warning ducking_roles=x-maemo volume=-12dB duck_while_corked=true
 
 ### Load several protocols
 .ifexists module-esound-protocol-unix.so
@@ -97,25 +87,14 @@ load-module module-native-protocol-unix
 #load-module module-null-sink sink_name=rtp format=s16be channels=2 rate=44100 sink_properties="device.description='RTP Multicast Sink'"
 #load-module module-rtp-send source=rtp.monitor
 
-### Load additional modules from GSettings. This can be configured with the paprefs tool.
+### Load additional modules from GConf settings. This can be configured with the paprefs tool.
 ### Please keep in mind that the modules configured by paprefs might conflict with manually
 ### loaded modules.
-.ifexists module-gsettings.so
+.ifexists module-gconf.so
 .nofail
-load-module module-gsettings
+load-module module-gconf
 .fail
 .endif
-
-
-### Automatically restore the default sink/source when changed by the user
-### during runtime
-### NOTE: This should be loaded as early as possible so that subsequent modules
-### that look up the default sink/source get the right value
-load-module module-default-device-restore
-
-### Automatically move streams to the default sink if the sink they are
-### connected to dies, similar for sources
-load-module module-rescue-streams
 
 ### Make sure we always have a sink around, even if it is a null sink.
 load-module module-always-sink
@@ -124,7 +103,7 @@ load-module module-always-sink
 load-module module-intended-roles
 
 ### Automatically suspend sinks/sources that become idle for too long
-load-module module-suspend-on-idle
+load-module module-suspend-on-idle timeout=1
 
 ### If autoexit on idle is enabled we want to make sure we only quit
 ### when no local session needs us anymore.
@@ -135,20 +114,13 @@ load-module module-console-kit
 load-module module-systemd-login
 .endif
 
-### Enable positioned event sounds
-load-module module-position-event-sounds
-
-### Cork music/video streams when a phone stream is active
-load-module module-role-cork
-
-### Modules to allow autoloading of filters (such as echo cancellation)
-### on demand. module-filter-heuristics tries to determine what filters
-### make sense, and module-filter-apply does the heavy-lifting of
-### loading modules and rerouting streams.
-load-module module-filter-heuristics
-load-module module-filter-apply
-
 ### Load DBus protocol
 .ifexists module-dbus-protocol.so
 load-module module-dbus-protocol
 .endif
+
+### Set default sink and source to sink.null and source.null, respectively. PulseAudio default
+### sink/source handling will move orphaned sink-inputs and source-outputs to default ones.
+### Policy enforcement module then moves the streams to new appropriate sinks or sources.
+set-default-sink sink.null
+set-default-source source.null
