@@ -69,6 +69,7 @@ Requires: sd-utils
 
 # sound
 Requires: alsa-utils
+Requires: alsa-ucm-conf
 
 # Cameras
 Requires: v4l-utils
