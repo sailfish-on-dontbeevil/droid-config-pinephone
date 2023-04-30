@@ -32,5 +32,5 @@ if echo $USB_FUNCTIONS | grep -q "rndis"; then
 fi
 echo $USB_FUNCTIONS | grep -q "mass_storage" && ln -s $GADGET_DIR/g1/functions/storage.0 $GADGET_DIR/g1/configs/b.1
 
-echo "$(ls /sys/class/udc)" > $GADGET_DIR/g1/UDC
+echo "$(ls /sys/class/udc)" > $GADGET_DIR/g1/UDC || true
  
