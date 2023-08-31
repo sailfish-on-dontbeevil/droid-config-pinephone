@@ -46,7 +46,7 @@ Requires: nemo-gstreamer1.0-interfaces
 #Requires: gstreamer1.0-droid
 
 # This is needed for notification LEDs
-Requires: mce-plugin-libhybris-nondroid
+Requires: mce-plugin-libhybris
 
 ## USB mode controller
 ## Enables mode selector upon plugging USB cable:
