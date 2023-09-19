@@ -30,6 +30,9 @@ Requires: libngf-qt5-qtfeedback
 # Pulseaudio
 Requires: pulseaudio-module-keepalive
 
+# Connman
+Requires: sailfish-connman-plugin-tethering-keepalive
+
 # for audio recording to work:
 Requires: qt5-qtmultimedia-plugin-mediaservice-gstmediacapture
 
