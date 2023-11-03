@@ -41,6 +41,27 @@ Requires: csd
 # KMod required for kmod-static-nodes.service 
 Requires: kmod
 
+#Debug tools
+Recommends: vi
+Recommends: strace
+Recommends: gdb
+Recommends: mce-tools
+
+#Sailfish porter tools
+Recommends: jolla-developer-mode
+Recommends: sailfishsilica-qt5-demos
+Recommends: busybox-static
+Recommends: net-tools
+Recommends: openssh-clients
+Recommends: openssh-server
+Recommends: vim-enhanced
+Recommends: zypper
+Recommends: strace
+Recommends: jolla-rnd-device
+
+#Chum
+Recommends: sailfishos-chum-gui
+
 %description -n patterns-sailfish-device-configuration-pinephone
 Pattern with packages for pinephone configurations
 
