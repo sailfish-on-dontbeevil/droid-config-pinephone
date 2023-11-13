@@ -59,6 +59,8 @@ Recommends: zypper
 Recommends: strace
 Recommends: jolla-rnd-device
 
+Requires:   parted
+
 #Chum
 Recommends: sailfishos-chum-gui
 
