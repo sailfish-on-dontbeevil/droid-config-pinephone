@@ -34,7 +34,7 @@
 ### Load audio drivers statically
 ### (it's probably better to not load these drivers manually, but instead
 ### use module-udev-detect -- see below -- for doing this automatically)
-load-module module-alsa-card device_id=0 rate=44100
+load-module module-alsa-card device_id=PinePhonePro rate=44100
 
 #load-module module-pipe-sink
 
