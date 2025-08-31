@@ -27,4 +27,5 @@
 /usr/lib/systemd/user/lipstick.service.d/50-compositor.conf
 /usr/lib/systemd/user/jolla-startupwizard-pre-user-session.service.d/50-compositor.conf
 /etc/ofono/binder.conf
+/usr/share/ssu/features.d/adaptation-community.ini
 
