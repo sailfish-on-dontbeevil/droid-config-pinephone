@@ -21,7 +21,6 @@ Requires: bluez5-tools
 #Requires: bluetooth-rfkill-event-hciattach
 
 # Vibra
-Requires: qt5-feedback-haptics-ffmemless
 Requires: libngf-qt5-qtfeedback
 
 # Sensors
@@ -66,9 +65,6 @@ Requires: jolla-devicelock-plugin-encsfa
 Requires: gpsd
 Requires: geoclue
 Requires: geoclue-provider-gpsd3
-
-# For mounting SD card automatically
-Requires: sd-utils
 
 # sound
 Requires: alsa-utils
